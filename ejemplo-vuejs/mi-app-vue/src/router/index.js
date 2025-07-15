@@ -66,14 +66,8 @@ const router = createRouter({
 
 // Guard de navegación para rutas que requieren autenticación
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem("authToken");
-
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (!token) {
-      next({ name: "Login" });
-    } else {
-      next();
-    }
+  if (to.meta.requiresAuth && !localStorage.getItem("authToken")) {
+    next("/login"); // Redirige al login si no está autenticado
   } else {
     next();
   }

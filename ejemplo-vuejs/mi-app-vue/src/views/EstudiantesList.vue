@@ -82,7 +82,7 @@ export default {
       if (confirm("¿Estás seguro de que quieres eliminar este estudiante?")) {
         try {
           await api.delete(url);
-          this.estudiantes = this.estudiantes.filter(est => est.url !== url);
+          this.estudiantes = this.estudiantes.filter((est) => est.url !== url);
           alert("Estudiante eliminado exitosamente");
         } catch (err) {
           console.error("Error al eliminar estudiante:", err.response || err);
